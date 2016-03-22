@@ -14,7 +14,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Vincent Mardon <mardon.vincent@gmail.com>",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "devDependencies": {
       
   }
