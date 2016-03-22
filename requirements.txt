@@ -1,0 +1,4 @@
+python=3.5.0
+django=1.9.4
+djangorestframework=3.3.3
+bower==1.7.7

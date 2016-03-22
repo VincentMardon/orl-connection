@@ -1,0 +1,21 @@
+{
+  "name": "orl-connection",
+  "version": "0.1.0",
+  "description": "The official DJ Looping website from ORL Connection",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/VincentMardon/orl-connection.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Vincent Mardon <mardon.vincent@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+      
+  }
+}
