@@ -1,11 +1,11 @@
 {
   "name": "orl-connection",
   "description": "The official DJ Looping website from ORL Connection",
-  "main": "templates/index.html",
+  "main": "main.js",
   "authors": [
     "Vincent Mardon <mardon.vincent@gmail.com>"
   ],
-  "license": "ISC",
+  "license": "GPL-3.0",
   "homepage": "https://github.com/VincentMardon/orl-connection",
   "moduleType": [
     "node"
