@@ -1,5 +1,5 @@
 """
-WSGI config for frantz_app project.
+WSGI config for orl-connection project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "frantz_app.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "orl-connection.settings")
 
 application = get_wsgi_application()
