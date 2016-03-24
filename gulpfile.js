@@ -10,6 +10,7 @@ var Server = require('karma').Server;
 var ngAnnotate = require('gulp-ng-annotate');
 var templateCache = require('gulp-angular-templatecache');
 var uglify = require('gulp-uglify');
+var livereload = require('gulp-livereload');
 
 // Common paths
 // ------------
@@ -35,7 +36,8 @@ gulp.task('annotate', function() {
             add: true,
             single_quotes: true
         }))
-        .pipe(gulp.dest('./angular/'));
+        .pipe(gulp.dest('./angular/'))
+        .livereload();
 });
 
 /**
@@ -45,13 +47,15 @@ gulp.task('templateCache', function() {
     gulp
         .src(templatesSrc)
         .pipe(templateCache())
-        .pipe(gulp.dest('./angular/templateCaches.js'));
+        .pipe(gulp.dest('./angular/templateCaches.js'))
+        .livereload();
 });
 
 /**
  * Watching files
  */
 gulp.task('watch', function() {
+    livereload.listen();
     gulp.watch(angularWithoutTest, ['annotate']);
     gulp.watch(templatesSrc, ['templateCache']);
 });
