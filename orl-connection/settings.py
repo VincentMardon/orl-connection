@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'livereload',
     'django.contrib.staticfiles',
+    'apps.authentication',
 ]
 
 MIDDLEWARE_CLASSES = [
