@@ -16,7 +16,7 @@ class AccountManager(BaseUserManager):
         if not kwargs.get('username'):
             raise ValueError('User must have a username.')
         
-        if calculate_age(date_of_birth) < 13:
+        if self.calculate_age(date_of_birth) < 13:
             raise ValueError('User must be 13 at least.')
         
         account = self.model(
@@ -42,7 +42,7 @@ class AccountManager(BaseUserManager):
         
         return account
     
-    def calculate_age(born):
+    def calculate_age(self, born):
         """
         Calculates the user age
         """
@@ -59,21 +59,23 @@ class Account(AbstractBaseUser):
     
     delivery_adress = models.CharField(max_length=255)
     delivery_adress_complement = models.CharField(max_length=255)
-    delivery_zip_code = models.IntegerField()
+    delivery_zip_code = models.IntegerField(null=True)
     delivery_town = models.CharField(max_length=50)
     
     billing_adress = models.CharField(max_length=255)
     billing_adress_complement = models.CharField(max_length=255)
-    billing_zip_code = models.IntegerField()
+    billing_zip_code = models.IntegerField(null=True)
     billing_town = models.CharField(max_length=50)
     
-    phone_number = models.IntegerField()
+    phone_number = models.IntegerField(null=True)
     tagline = models.CharField(max_length=140)
     
     is_admin = models.BooleanField(default=False)
     
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    objects = AccountManager()
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'date_of_birth']
