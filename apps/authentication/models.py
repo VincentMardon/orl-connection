@@ -56,10 +56,17 @@ class Account(AbstractBaseUser):
     
     first_name = models.CharField(max_length=40)
     last_name = models.CharField(max_length=40)
-    adress = models.CharField(max_length=255)
-    adress_complement = models.CharField(max_length=255)
-    zip_code = models.IntegerField()
-    town = models.CharField(max_length=50)
+    
+    delivery_adress = models.CharField(max_length=255)
+    delivery_adress_complement = models.CharField(max_length=255)
+    delivery_zip_code = models.IntegerField()
+    delivery_town = models.CharField(max_length=50)
+    
+    billing_adress = models.CharField(max_length=255)
+    billing_adress_complement = models.CharField(max_length=255)
+    billing_zip_code = models.IntegerField()
+    billing_town = models.CharField(max_length=50)
+    
     phone_number = models.IntegerField()
     tagline = models.CharField(max_length=140)
     
