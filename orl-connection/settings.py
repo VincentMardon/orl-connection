@@ -125,3 +125,4 @@ STATIC_URL = '/static/'
 
 # Auth user model
 AUTH_USER_MODEL = 'authentication.Account'
+
