@@ -13,8 +13,8 @@ class AccountSerializer(serializers.ModelSerializer):
             'last_name', 'delivery_adress', 'delivery_adress_complement',
             'delivery_zip_code', 'delivery_town', 'billing_adress',
             'billing_adress_complement','billing_zip_code', 'billing_town',
-            'phone_number', 'tagline', 'password', 'confirm_password', 'is_admin',
-            'created_at', 'updated_at'
+            'phone_number', 'tagline', 'password', 'confirm_password',
+            'is_admin', 'is_active', 'created_at', 'updated_at'
         )
         
         read_only_fields = ('is_admin', 'created_at', 'updated_at')

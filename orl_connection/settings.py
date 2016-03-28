@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    'django.contrib.admin.apps.SimpleAdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -53,7 +53,7 @@ MIDDLEWARE_CLASSES = [
     'livereload.middleware.LiveReloadScript',
 ]
 
-ROOT_URLCONF = 'orl-connection.urls'
+ROOT_URLCONF = 'orl_connection.urls'
 
 TEMPLATES = [
     {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'orl-connection.wsgi.application'
+WSGI_APPLICATION = 'orl_connection.wsgi.application'
 
 
 # Database
@@ -107,9 +107,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'FR_fr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Paris'
+
+DATE_FORMAT = 'd M Y'
 
 USE_I18N = True
 

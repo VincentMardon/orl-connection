@@ -51,34 +51,39 @@ class AccountManager(BaseUserManager):
 
 class Account(AbstractBaseUser):
     email = models.EmailField(unique=True)
-    username = models.CharField(max_length=40, unique=True)
-    date_of_birth = models.DateField()
+    username = models.CharField(max_length=40, unique=True, verbose_name='Nom d\'utilisateur')
+    date_of_birth = models.DateField(verbose_name='Date de naissance')
     
-    first_name = models.CharField(max_length=40)
-    last_name = models.CharField(max_length=40)
+    first_name = models.CharField(max_length=40, verbose_name='Prénom')
+    last_name = models.CharField(max_length=40, verbose_name='Nom de famille')
     
-    delivery_adress = models.CharField(max_length=255)
-    delivery_adress_complement = models.CharField(max_length=255)
-    delivery_zip_code = models.IntegerField(null=True)
-    delivery_town = models.CharField(max_length=50)
+    delivery_adress = models.CharField(max_length=255, verbose_name='Adresse de livraison')
+    delivery_adress_complement = models.CharField(max_length=255, verbose_name='Complément d\'adresse de livraison')
+    delivery_zip_code = models.IntegerField(null=True, verbose_name='Code postal de livraison')
+    delivery_town = models.CharField(max_length=50, verbose_name='Ville de livraison')
     
-    billing_adress = models.CharField(max_length=255)
-    billing_adress_complement = models.CharField(max_length=255)
-    billing_zip_code = models.IntegerField(null=True)
-    billing_town = models.CharField(max_length=50)
+    billing_adress = models.CharField(max_length=255, verbose_name='Adresse de facturation')
+    billing_adress_complement = models.CharField(max_length=255, verbose_name='Complément d\'adresse de facturation')
+    billing_zip_code = models.IntegerField(null=True, verbose_name='Code postal de facturation')
+    billing_town = models.CharField(max_length=50, verbose_name='Ville de livraison')
     
-    phone_number = models.IntegerField(null=True)
-    tagline = models.CharField(max_length=140)
+    phone_number = models.IntegerField(null=True, verbose_name='Numéro de téléphone')
+    tagline = models.CharField(max_length=140, verbose_name='Signature')
     
-    is_admin = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Création')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Mise à jour')
     
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True, verbose_name='Actif')
+    is_admin = models.BooleanField(default=False, verbose_name='Administrateur')
     
     objects = AccountManager()
     
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'date_of_birth']
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email', 'date_of_birth']
+    
+    class Meta:
+        verbose_name = 'Compte utilisateur'
+        verbose_name_plural = 'Comptes utilisateur'
     
     def get_full_name(self):
         """
@@ -97,3 +102,12 @@ class Account(AbstractBaseUser):
         Returns user email
         """
         return self.email
+    
+    def has_perm(self, perm, obj=None):
+        return True
+    
+    def has_module_perms(self, app_label):
+        return True
+    
+    def is_staff(self):
+        return self.is_admin
