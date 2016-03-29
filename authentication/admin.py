@@ -1,5 +1,8 @@
 from django import forms
 from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth import admin
+
+from datetime import date
 
 from authentication.models import Account
 
@@ -8,9 +11,18 @@ class AccountCreationForm(forms.ModelForm):
     A form for creating new users. Includes all the required
     fields, plus a repeated password.
     """
+    available_year = date.today().year - 13
+    earliest_year = date.today().year - 120
+    years = []
+    
+    while available_year >= earliest_year:
+        years.append(available_year)
+        available_year -= 1
+    
     date_of_birth = forms.DateField(
         label='Date de naissance',
         widget=forms.SelectDateWidget(
+            years=years,
             empty_label=('Année', 'Mois', 'Jour'),
         ),
     )
@@ -64,13 +76,6 @@ class AccountChangeForm(forms.ModelForm):
     but not the password.
     """
     
-    date_of_birth = forms.DateField(
-        label='Date de naissance',
-        widget=forms.SelectDateWidget(
-            empty_label=('Année', 'Mois', 'Jour'),
-        ),
-    )
-    
     class Meta:
         model = Account
         fields = ('email', 'username', 'date_of_birth', 'first_name',
@@ -79,14 +84,6 @@ class AccountChangeForm(forms.ModelForm):
             'billing_adress_complement','billing_zip_code', 'billing_town',
             'phone_number', 'tagline', 'password', 'is_admin', 'is_active',
         )
-        
-        def clean_password(self):
-            """
-            Regardless of what the user provides, return the initial value.
-            This is done here, rather than on the field, because the
-            field does not have access to the initial value.
-            """
-            return self.initial['password']
 
 
 class AccountAdmin(UserAdmin):
@@ -98,11 +95,7 @@ class AccountAdmin(UserAdmin):
     
     list_display = ('email', 'username', 'date_of_birth', 'is_admin')
     list_filter = ('is_admin',)
-    fieldsets = (
-        ('Identifiants', {'fields': ('email', 'username')}),
-        ('Informations Personelles', {'fields': ('first_name', 'last_name', 'date_of_birth')}),
-        ('Permissions', {'fields': ('is_admin',)}),
-    )
+    
     
     add_fieldsets = (
         (None, {
@@ -110,9 +103,59 @@ class AccountAdmin(UserAdmin):
             'fields': ('email', 'username', 'date_of_birth', 'password1', 'password2')
         }),
     )
+    fieldsets = (
+        ('Permissions', {
+            'description': 'Cochez/décochez "<b>Administrateur</b>" pour autoriser/interdire l\'utilisateur à accéder à l\'administration.<br />Cochez/décochez "<b>Actif</b>" pour activer/désactiver le compte de l\'utilisateur.',
+            'fields': ('is_admin', 'is_active')
+        }),
+        ('Identifiants', {'fields': ('email', 'username')}),
+        ('Informations Personelles', {'fields': (
+            'first_name',
+            'last_name', 
+            'date_of_birth',
+            'phone_number',
+            'tagline',
+        )}),
+        ('Adresse de livraison', {'fields': (
+            'delivery_adress',
+            'delivery_adress_complement',
+            'delivery_zip_code',
+            'delivery_town',
+        )}),
+        ('Adresse de facturation', {'fields': (
+            'billing_adress',
+            'billing_adress_complement',
+            'billing_zip_code',
+            'billing_town',
+        )}),
+    )
     
     search_fields = ('email', 'username')
     ordering = ('username',)
     filter_horizontal = ()
     
-    print(form.Meta.model.objects.earliest('created_at').is_admin)
+    def get_readonly_fields(self, request, obj=None):
+        readonly_fields = ()
+        
+        if obj is not None:
+            readonly_fields = (
+                'email',
+                'username',
+                'first_name',
+                'last_name',
+                'date_of_birth',
+                'phone_number',
+                'tagline',
+                'delivery_adress',
+                'delivery_adress_complement',
+                'delivery_zip_code',
+                'delivery_town',
+                'billing_adress',
+                'billing_adress_complement',
+                'billing_zip_code',
+                'billing_town',
+            )
+            
+            return readonly_fields
+        
+        return readonly_fields

@@ -54,21 +54,21 @@ class Account(AbstractBaseUser):
     username = models.CharField(max_length=40, unique=True, verbose_name='Nom d\'utilisateur')
     date_of_birth = models.DateField(verbose_name='Date de naissance')
     
-    first_name = models.CharField(max_length=40, verbose_name='Prénom')
-    last_name = models.CharField(max_length=40, verbose_name='Nom de famille')
+    first_name = models.CharField(null=True, max_length=40, verbose_name='Prénom')
+    last_name = models.CharField(null=True, max_length=40, verbose_name='Nom de famille')
     
-    delivery_adress = models.CharField(max_length=255, verbose_name='Adresse de livraison')
-    delivery_adress_complement = models.CharField(max_length=255, verbose_name='Complément d\'adresse de livraison')
-    delivery_zip_code = models.IntegerField(null=True, verbose_name='Code postal de livraison')
-    delivery_town = models.CharField(max_length=50, verbose_name='Ville de livraison')
+    delivery_adress = models.CharField(null=True, max_length=255, verbose_name='Adresse')
+    delivery_adress_complement = models.CharField(null=True, max_length=255, verbose_name='Complément d\'adresse')
+    delivery_zip_code = models.IntegerField(null=True, verbose_name='Code postal')
+    delivery_town = models.CharField(null=True, max_length=50, verbose_name='Ville')
     
-    billing_adress = models.CharField(max_length=255, verbose_name='Adresse de facturation')
-    billing_adress_complement = models.CharField(max_length=255, verbose_name='Complément d\'adresse de facturation')
-    billing_zip_code = models.IntegerField(null=True, verbose_name='Code postal de facturation')
-    billing_town = models.CharField(max_length=50, verbose_name='Ville de livraison')
+    billing_adress = models.CharField(null=True, max_length=255, verbose_name='Adresse')
+    billing_adress_complement = models.CharField(null=True, max_length=255, verbose_name='Complément d\'adresse')
+    billing_zip_code = models.IntegerField(null=True, verbose_name='Code postal')
+    billing_town = models.CharField(null=True, max_length=50, verbose_name='Ville')
     
     phone_number = models.IntegerField(null=True, verbose_name='Numéro de téléphone')
-    tagline = models.CharField(max_length=140, verbose_name='Signature')
+    tagline = models.CharField(null=True, max_length=140, verbose_name='Signature')
     
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Création')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Mise à jour')
@@ -109,5 +109,6 @@ class Account(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
     
+    @property
     def is_staff(self):
         return self.is_admin

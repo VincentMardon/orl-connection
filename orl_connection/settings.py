@@ -111,7 +111,7 @@ LANGUAGE_CODE = 'FR_fr'
 
 TIME_ZONE = 'Europe/Paris'
 
-DATE_FORMAT = 'd M Y'
+DATE_FORMAT = 'j F Y'
 
 USE_I18N = True
 
