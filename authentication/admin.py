@@ -5,6 +5,7 @@ from django.contrib.auth import admin
 from datetime import date
 
 from authentication.models import Account
+from authentication.services import calculate_age
 
 class AccountCreationForm(forms.ModelForm):
     """
@@ -51,9 +52,22 @@ class AccountCreationForm(forms.ModelForm):
         password2 = self.cleaned_data.get('password2')
         
         if password1 and password2 and password1 != password2:
-            raise forms.ValidationError('Passwords don\'t match.')
+            raise forms.ValidationError('Les mots de passe ne correspondent pas.')
         
         return password2
+    
+    def clean_date_of_birth(self):
+        """
+        Check that the user is 13 years old at least.
+        """
+        born = self.cleaned_data.get('date_of_birth')
+        
+        print(type(calculate_age(born)))
+        
+        if calculate_age(born) < 13:
+            raise forms.ValidationError('Vous devez avoir au moins 13 ans pour vous inscrire.')
+        
+        return born
     
     def save(self, commit=True):
         """

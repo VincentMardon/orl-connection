@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 
-from datetime import date
+from authentication.services import calculate_age
 
 class AccountManager(BaseUserManager):
     def create_user(self, email, date_of_birth, password=None, **kwargs):
@@ -11,13 +11,13 @@ class AccountManager(BaseUserManager):
         """
         
         if not email:
-            raise ValueError('User must have an email adress.')
+            raise ValueError('L\'utilisateur doit avoir un email valide.')
         
         if not kwargs.get('username'):
-            raise ValueError('User must have a username.')
+            raise ValueError('L\'utilisateur doit avoir un nom d\'utilisateur.')
         
-        if self.calculate_age(date_of_birth) < 13:
-            raise ValueError('User must be 13 at least.')
+        if calculate_age(date_of_birth) < 13:
+            raise ValueError('L\'utilisateur doit avoir 13 minimum.')
         
         account = self.model(
             email=self.normalize_email(email),
@@ -41,13 +41,6 @@ class AccountManager(BaseUserManager):
         account.save()
         
         return account
-    
-    def calculate_age(self, born):
-        """
-        Calculates the user age
-        """
-        today = date.today()
-        return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
 
 class Account(AbstractBaseUser):
     email = models.EmailField(unique=True)
