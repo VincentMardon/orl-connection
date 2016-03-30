@@ -11,13 +11,11 @@ class AccountCreationForm(forms.ModelForm):
     A form for creating new users. Includes all the required
     fields, plus a repeated password.
     """
-    available_year = date.today().year - 13
+    # No discrimination, people can create an account until 120 years old !
+    available_year = date.today().year - 12
     earliest_year = date.today().year - 120
-    years = []
     
-    while available_year >= earliest_year:
-        years.append(available_year)
-        available_year -= 1
+    years = sorted([year for year in range(earliest_year, available_year)], reverse=True)
     
     date_of_birth = forms.DateField(
         label='Date de naissance',
@@ -135,6 +133,10 @@ class AccountAdmin(UserAdmin):
     filter_horizontal = ()
     
     def get_readonly_fields(self, request, obj=None):
+        """
+        Display fields, except is_active and is_admin fields, in readonly_fields
+        if obj = form
+        """
         readonly_fields = ()
         
         if obj is not None:
