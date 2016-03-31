@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'livereload',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_swagger',
     'authentication',
+    'apps.utils',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -130,4 +132,15 @@ STATIC_URL = '/static/'
 
 # Auth user model
 AUTH_USER_MODEL = 'authentication.Account'
+
+# Django REST Framework
+# http://www.django-rest-framework.org/
+REST_FRAMEWORK = {
+    'PAGINATE_BY': 25,
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'apps.utils.renderers.BrowsableAPIRendererWithoutForms',
+    )
+}
+
 

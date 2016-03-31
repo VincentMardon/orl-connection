@@ -13,8 +13,8 @@ from authentication.services import calculate_age
 # ----------------- #
 
 class AccountSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True, required=False)
-    confirm_password = serializers.CharField(write_only=True, required=False)
+    password = serializers.CharField(write_only=True, required=False, label='Mot de passe')
+    confirm_password = serializers.CharField(write_only=True, required=False, label='Confirmer le mot de passe.')
     
     class Meta:
         model = Account
@@ -26,8 +26,6 @@ class AccountSerializer(serializers.ModelSerializer):
             'phone_number', 'tagline', 'password', 'confirm_password',
             'is_admin', 'is_active', 'created_at', 'updated_at'
         )
-        
-        read_only_fields = ('is_admin', 'created_at', 'updated_at')
     
     def validate_date_of_birth(self, value):
         born = datetime.strptime(value, '%Y-%m-%d')

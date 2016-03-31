@@ -26,9 +26,14 @@ router = routers.SimpleRouter()
 router.register(r'accounts', AccountViewSet)
 
 urlpatterns = [
-    url(r'orl/', include(router.urls)),
-    url(r'orl/auth/login', LoginView.as_view(), name='login'),
-    url(r'orl/auth/logout', LogoutView.as_view(), name='logout'),
+    url(r'orl-rest-api/', include(router.urls)),
+    url(r'orl-rest-api/auth/login', LoginView.as_view(), name='login'),
+    url(r'orl-rest-api/auth/logout', LogoutView.as_view(), name='logout'),
+    url(r'^orl-rest-api/docs/', include('rest_framework_swagger.urls')),
     url(r'^admin/', admin_site.urls),
     url(r'$.*^', IndexView.as_view(), name='index'),
+]
+
+urlpatterns += [
+    url(r'^orl-rest-api/api-auth/', include('rest_framework.urls')),
 ]

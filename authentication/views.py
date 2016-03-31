@@ -4,10 +4,11 @@ from django.contrib.auth import authenticate, login, logout
 
 from rest_framework import permissions, viewsets, status, views
 from rest_framework.response import Response
+from rest_framework.renderers import BrowsableAPIRenderer
 
 from authentication.models import Account
 from authentication.serializers import AccountSerializer
-from authentication.permissions import IsAccountOwner
+from authentication.permissions import IsAccountAdmin
 
 
 # -------------- #
@@ -20,14 +21,7 @@ class AccountViewSet(viewsets.ModelViewSet):
     serializer_class = AccountSerializer
     
     def get_permissions(self):
-        if self.request.method in permissions.SAFE_METHODS:
-            print('prout')
-            return (permissions.AllowAny(),)
-        
-        if self.request.method == 'POST':
-            return (permissions.AllowAny(),)
-        
-        return (permissions.IsAuthenticated(), IsAccountOwner(),)
+        return (permissions.IsAuthenticated(), IsAccountAdmin(),)
     
     def create(self, request):
         serializer = self.serializer_class(data=request.data)
