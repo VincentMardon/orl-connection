@@ -7,6 +7,11 @@ from rest_framework import serializers
 from authentication.models import Account
 from authentication.services import calculate_age
 
+
+# ----------------- #
+# AccountSerializer #
+# ----------------- #
+
 class AccountSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=False)
     confirm_password = serializers.CharField(write_only=True, required=False)
@@ -33,8 +38,6 @@ class AccountSerializer(serializers.ModelSerializer):
         return value
     
     def create(self, validated_data):
-        #print(validated_data['password'])
-        print(validated_data['date_of_birth'])
         return Account.objects.create(**validated_data)
         
     def update(self, instance, validated_data):

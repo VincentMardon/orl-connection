@@ -13,10 +13,22 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 
 from orl_connection.custom_admin import admin_site
+from orl_connection.views import IndexView
+
+from rest_framework_nested import routers
+
+from authentication.views import AccountViewSet, LoginView, LogoutView
+
+router = routers.SimpleRouter()
+router.register(r'accounts', AccountViewSet)
 
 urlpatterns = [
+    url(r'orl/', include(router.urls)),
+    url(r'orl/auth/login', LoginView.as_view(), name='login'),
+    url(r'orl/auth/logout', LogoutView.as_view(), name='logout'),
     url(r'^admin/', admin_site.urls),
+    url(r'$.*^', IndexView.as_view(), name='index'),
 ]

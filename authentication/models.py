@@ -3,6 +3,11 @@ from django.db import models
 
 from authentication.services import calculate_age
 
+
+# -------------- #
+# AccountManager #
+# -------------- #
+
 class AccountManager(BaseUserManager):
     def create_user(self, email, date_of_birth, password=None, **kwargs):
         """
@@ -41,6 +46,11 @@ class AccountManager(BaseUserManager):
         account.save()
         
         return account
+
+
+# ------- #
+# Account #
+# ------- #
 
 class Account(AbstractBaseUser):
     email = models.EmailField(unique=True)
