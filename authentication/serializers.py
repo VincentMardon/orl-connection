@@ -1,6 +1,11 @@
+from datetime import datetime
+
 from django.contrib.auth import update_session_auth_hash
+
 from rest_framework import serializers
+
 from authentication.models import Account
+from authentication.services import calculate_age
 
 class AccountSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=False)
@@ -18,23 +23,33 @@ class AccountSerializer(serializers.ModelSerializer):
         )
         
         read_only_fields = ('is_admin', 'created_at', 'updated_at')
+    
+    def validate_date_of_birth(self, value):
+        born = datetime.strptime(value, '%Y-%m-%d')
         
-        def create(self, validated_data):
-            return Account.objects.create(**validated_data)
+        if calculate_age(born) < 13:
+            raise serializers.ValidationError('Vous devez avoir 13 ans minimum pour vous inscrire.')
         
-        def update(self, instance, validated_data):
-            instance.username = validated_data.get('username', instance.username)
-            instance.tagline = validated_data.get('tagline', instance.tagline)
-            
+        return value
+    
+    def create(self, validated_data):
+        #print(validated_data['password'])
+        print(validated_data['date_of_birth'])
+        return Account.objects.create(**validated_data)
+        
+    def update(self, instance, validated_data):
+        instance.username = validated_data.get('username', instance.username)
+        instance.tagline = validated_data.get('tagline', instance.tagline)
+    
+        instance.save()
+        
+        password = validated_data.get('password', None)
+        confirm_password = validated_data.get('confirm_password', None)
+        
+        if password and confirm_password and password == confirm_password:
+            instance.set_password(password)
             instance.save()
-            
-            password = validated_data.get('password', None)
-            confirm_password = validated_data.get('confirm_password', None)
-            
-            if password and confirm_password and password == confirm_password:
-                instance.set_password(password)
-                instance.save()
-            
-            update_session_auth_hash(self.context.get('request'), instance)
-            
-            return instance
+        
+        update_session_auth_hash(self.context.get('request'), instance)
+        
+        return instance
