@@ -17,7 +17,7 @@ class AccountManager(BaseUserManager):
             raise ValueError('L\'utilisateur doit avoir un nom d\'utilisateur.')
         
         if calculate_age(date_of_birth) < 13:
-            raise ValueError('L\'utilisateur doit avoir 13 minimum.')
+            raise ValueError('L\'utilisateur doit avoir 13 ans minimum.')
         
         account = self.model(
             email=self.normalize_email(email),
