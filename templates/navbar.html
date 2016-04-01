@@ -1,0 +1,15 @@
+<div class="container navbar" ng-controller="NavbarCtrl as vm">
+    <a href='/'>ORL Connection</a>
+    {% if user.is_authenticated %}
+        <span><a href="/{{ user.username }}">{{ user.username }}</a> <span ng-click="vm.toggleAccountOptions()">&#9662;</span></span>
+        
+        <div ng-show="vm.accountOptions">
+            <ul>
+                <li><a href="/{{ user.username }}/settings">Éditer mon profil</a></li>
+                <li ng-click="vm.logout()">Me déconnecter</li>
+            </ul>
+        </div>
+    {% else %}
+        <a ng-click="vm.login()">Login</a>
+    {% endif %}
+</div>
