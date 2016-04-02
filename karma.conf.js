@@ -19,7 +19,9 @@ module.exports = function(config) {
             exitOnResourceError: true
         },
         files: [
-            'test/**/*.js'
+            'static/bower_components/angular/angular.min.js',
+            'static/bower_components/angular-mocks/angular-mocks.js',
+            'static/angular/tests/**/*.js'
         ]
     })
 }

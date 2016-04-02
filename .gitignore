@@ -15,3 +15,9 @@ static/bower_components/
 
 # Uglified JavaScript
 dist/
+
+# Gemfile.lock
+Gemfile.lock
+
+# sass caches
+.sass-cache

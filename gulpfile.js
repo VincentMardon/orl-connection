@@ -14,8 +14,8 @@ var livereload = require('gulp-livereload');
 
 // Common paths
 // ------------
-var angularWithoutTest = ['./angular/**/*.js', '!./angular/tests/**/*.js'];
-var templatesSrc = ['./angular/templates/*.html'];
+var angularWithoutTest = ['.static/angular/**/*.js', '!.static/angular/tests/**/*.js'];
+var templatesSrc = ['.static/angular/templates/*.html'];
 
 // Developpement tasks
 // -------------------
@@ -36,7 +36,7 @@ gulp.task('annotate', function() {
             add: true,
             single_quotes: true
         }))
-        .pipe(gulp.dest('./angular/'))
+        .pipe(gulp.dest('./static/angular/'))
         .livereload();
 });
 
@@ -47,7 +47,7 @@ gulp.task('templateCache', function() {
     gulp
         .src(templatesSrc)
         .pipe(templateCache())
-        .pipe(gulp.dest('./angular/templateCaches.js'))
+        .pipe(gulp.dest('./static/angular/templateCaches.js'))
         .livereload();
 });
 
@@ -55,7 +55,13 @@ gulp.task('templateCache', function() {
  * Watching files
  */
 gulp.task('watch', function() {
-    livereload.listen();
+    livereload.listen({
+        basePath: [
+            'static/assets/**/*',
+            'templates/*',
+            'img/**/*'
+        ],
+    });
     gulp.watch(angularWithoutTest, ['annotate']);
     gulp.watch(templatesSrc, ['templateCache']);
 });
@@ -81,7 +87,7 @@ gulp.task('test', function(done) {
 
 gulp.task('default', [
     'tdd',
-    'watch'
+    'watch',
 ]);
 
 
