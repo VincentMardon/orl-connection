@@ -25,6 +25,18 @@ This software is on developpement for now...
 * `$ python manage.py runserver`
 * `$ compass watch --config static/config.rb` 
 
+## About Compass watch
+
+It is possible you encoutered an issue with le command line `compass watch`.
+To fix this try this:
+
+* `$ compass watch --config static/config.rb --poll`
+
+If the watcher crash, try this:
+
+* `$ gem update --system`
+
+Normally, this command line resolve this possible issue
 
 ## License
 
