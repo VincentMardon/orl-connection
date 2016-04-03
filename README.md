@@ -27,9 +27,9 @@ Fork this repository:
 * `$ npm install`
 * `$ bower install`
 * `$ bundle install`
-* `$ gulp`
 * `$ python manage.py livereload`
 * `$ python manage.py runserver`
+* `$ gulp`
 * `$ compass watch --config static/config.rb` 
 
 ### About Compass watch

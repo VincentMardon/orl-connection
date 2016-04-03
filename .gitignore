@@ -4,20 +4,23 @@
 # Python compiled byte code
 *.pyc
 
+# sass caches
+*.sass-cache
+
 # SQLite3 database
 *.sqlite3
+
+# Gemfile.lock
+Gemfile.lock
 
 # Node modules
 node_modules/
 
 # Bower components
-static/bower_components/
+bower_components/
 
 # Uglified JavaScript
-dist/
+assets/js/
 
-# Gemfile.lock
-Gemfile.lock
-
-# sass caches
-.sass-cache
+# angular-annotated
+angular-annotated/
