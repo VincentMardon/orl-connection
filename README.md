@@ -1,17 +1,24 @@
 # ORL Connection
 
-This software is on developpement for now...
+*This software is still under developpement...*
 
-## Installation
+## Table of contents
 
-*NOTE: Requires 
-[Python 3.5](https://www.python.org/downloads/release/python-350/),
-[virtualenv](http://virtualenv.readthedocs.org/en/latest/),
-[Node.js 5](https://nodejs.org/en/download/),
-[Ruby 2.2.3](https://www.ruby-lang.org/en/documentation/installation/)
+1. [Installatiion](#installation)
+2. [About Compass watch](#about-compass-watch)
+3. [License](#license)
 
-* For this repository
-* `$ git clone git@github.com:<your username>/orl-connection.git`
+### Installation
+
+**NOTE**: Requires 
+[Python 3.5](https://www.python.org/downloads/release/python-350/ "Python 3.5 download"),
+[virtualenv](http://virtualenv.readthedocs.org/en/latest/ "virtualenv installation"),
+[Node.js 5](https://nodejs.org/en/ "Node.js installation"),
+[Ruby 2.2.3](https://www.ruby-lang.org/en/documentation/installation/ "Ruby installation")
+
+Fork this repository:
+
+* `$ git clone https://github.com/VincentMardon/orl-connection.git [repository name]`
 * `$ virtualenv path/to/project/<env_project_name>`
 * `$ source <env_project_name>/bin/activate`
 * `$ cd orl-connection`
@@ -25,20 +32,20 @@ This software is on developpement for now...
 * `$ python manage.py runserver`
 * `$ compass watch --config static/config.rb` 
 
-## About Compass watch
+### About Compass watch
 
-It is possible you encoutered an issue with the command line `compass watch`.
-To fix this try this:
+It is possible that you encouter a bug with the command line `compass watch`.
+To fix that, try this:
 
 * `$ compass watch --config static/config.rb --poll`
 
-If the watcher crash, try this:
+If the watcher crashes, try this:
 
 * `$ gem update --system`
 
-Normally, this command line resolve this possible issue.
+Normally, this command line resolves this possible issue.
 
-## License
+### License
 
-This software is under the GPL-3.0 license.
+This software is under the *GPL-3.0* license.
 See LICENSE file for more information.
