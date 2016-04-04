@@ -6,7 +6,8 @@
             'orl.config',
             'orl.routes',
             'orl.templates',
-            'orl.layout'
+            'orl.layout',
+            'orl.authentication',
         ]);
     
     angular
@@ -20,6 +21,9 @@
     
     angular
         .module('orl.layout', []);
+    
+    angular
+        .module('orl.authentication', []);
     
     /**
      * desc Update xsrf $http headers to align with Django's defaults

@@ -16,9 +16,9 @@ var fs = require('fs');
 
 // Common paths
 // ------------
-var angularWithoutTest = ['./static/angular/**/*', '!./static/angular/tests/**/*'];
-var templatesSrc = ['./static/templates/**/*'];
-var templatesAndAssetsFiles = ['./static/assets/**/*', './templates/**/*'];
+var angularWithoutTest = ['static/angular/**/*', '!static/angular/tests/**/*'];
+var templatesSrc = ['static/templates/**/*'];
+var templatesAndAssetsFiles = ['static/assets/**/*', 'templates/**/*'];
 
 // Developpement tasks
 // -------------------
@@ -39,7 +39,7 @@ gulp.task('annotate', function() {
             add: true,
             single_quotes: true
         }))
-        .pipe(gulp.dest('./static/angular-annotated/'))
+        .pipe(gulp.dest('static/angular-annotated/'))
         .pipe(livereload());
 });
 
@@ -52,7 +52,7 @@ gulp.task('templateCache', function() {
         .pipe(templateCache('orl.templates.js', {
             module: 'orl.templates',
         }))
-        .pipe(gulp.dest('./static/angular/'))
+        .pipe(gulp.dest('static/angular/'))
         .pipe(livereload());
 });
 
@@ -108,14 +108,14 @@ gulp.task('default', [
  * command line.
  */
 gulp.task('del', function() {
-    del('./static/angular-annotated/tests');
+    del('static/angular-annotated/tests');
 });
 
 /**
  * Then, put the `gulp prod` command line to launch these tasks
  */
 gulp.task('prod', function() {
-    gulp.src('./static/angular-annotated/**/*')
+    gulp.src('static/angular-annotated/**/*')
         .pipe(uglify())
-        .pipe(gulp.dest('./static/assets/js'));
+        .pipe(gulp.dest('static/assets/js'));
 });
