@@ -12,8 +12,8 @@
 
 **NOTE**: Requires 
 [Python 3.5](https://www.python.org/downloads/release/python-350/ "Python 3.5 download"),
-[virtualenv](http://virtualenv.readthedocs.org/en/latest/ "virtualenv installation"),
-[Node.js 5](https://nodejs.org/en/ "Node.js installation"),
+[virtualenv 15.0.0](http://virtualenv.readthedocs.org/en/latest/ "virtualenv installation"),
+[Node.js 5.0.0](https://nodejs.org/en/ "Node.js installation"),
 [Ruby 2.2.3](https://www.ruby-lang.org/en/documentation/installation/ "Ruby installation")
 
 Fork this repository:

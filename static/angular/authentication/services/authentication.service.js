@@ -41,7 +41,7 @@
              * @param {string} day The day of birth entered by the user.
              * @param {string} password The password entered by the user.
              * @param {string} confirmPassword The password confirmation entered by the user.
-             * @returns {Promise}
+             * @returns {Promise|Snackbar.error}
              * @memberOf orl.authentication.services.Authentication
              */
             function register(username, email, year, month, day, password, confirmPassword) {
