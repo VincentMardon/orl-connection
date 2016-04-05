@@ -72,3 +72,8 @@ a {
   text-decoration: none;
   color: black;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/vincentmardon\/Desktop\/Web\/Sites\/projets\/frantz\/orl-connection\/static\/sass\/utils\/_messages\.scss}line{font-family:\000031}}
+.error-message {
+  color: red;
+}

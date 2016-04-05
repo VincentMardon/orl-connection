@@ -3,9 +3,13 @@
     
     angular
         .module('orl.layout', [
-            'orl.layout.controllers'
+            'orl.layout.controllers',
+            'orl.layout.services'
         ]);
     
     angular
-        .module('orl.layout.controllers', []);
+        .module('orl.layout.controllers', ['ngMessages']);
+    
+    angular
+        .module('orl.layout.services', []);
 })();

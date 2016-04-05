@@ -31,7 +31,7 @@ urlpatterns = [
     url(r'^orl-rest-api/auth/logout', LogoutView.as_view(), name='logout'),
     url(r'^orl-rest-api/docs/', include('rest_framework_swagger.urls')),
     url(r'^admin/', admin_site.urls),
-    url(r'$.*^', IndexView.as_view(), name='index'),
+    url('.*', IndexView.as_view(), name='index'),
 ]
 
 urlpatterns += [

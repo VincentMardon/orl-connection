@@ -41,7 +41,7 @@
              * @param {string} day The day of birth entered by the user.
              * @param {string} password The password entered by the user.
              * @param {string} confirmPassword The password confirmation entered by the user.
-             * @returns {Promise|Snackbar.error}
+             * @returns {Promise}
              * @memberOf orl.authentication.services.Authentication
              */
             function register(username, email, year, month, day, password, confirmPassword) {
@@ -49,7 +49,7 @@
                     // awesome stuff...
                 }
                 
-                $http.post('/orl-rest-api/accounts/', {
+                return $http.post('/orl-rest-api/accounts/', {
                     username: username,
                     email: email,
                     date_of_birth: year + '-' + month + '-' + day,
@@ -82,7 +82,7 @@
              * @memberOf orl.authentication.services.Authentication
              */
             function login(email, password) {
-                $http.get('/orl-rest-api/auth/login/', {
+                return $http.post('/orl-rest-api/auth/login/', {
                     email: email,
                     password: password,
                 }).then(loginSuccessFn, loginErrorFn);
@@ -103,6 +103,7 @@
                  */
                 function loginErrorFn(data, status, headers, config) {
                     console.error('Epic failure!');
+                    return data
                 }
             }
             
@@ -113,7 +114,7 @@
              * @memberOf orl.authentication.services.Authentication
              */
             function logout() {
-                $http.post('/orl-rest-api/auth/logout/')
+                return $http.post('/orl-rest-api/auth/logout/')
                     .then(logoutSuccessFn, logoutErrorFn);
                 
                 /**
@@ -176,7 +177,7 @@
              * @memberOf orl.authentication.services.Authentication
              */
             function unauthenticate() {
-                delete $cookie.authenticatedAccount;
+                delete $cookies.authenticatedAccount;
             }
         });
 })();

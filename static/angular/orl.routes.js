@@ -6,12 +6,12 @@
         .config(function($routeProvider) {
             $routeProvider
                 .when('/login', {
-                    controller: 'LoginCtrl',
+                    controller: 'LoginController',
                     controllerAs: 'vm',
                     templateUrl: 'static/templates/authentication/login.html'
                 })
                 .when('/register', {
-                    controller: 'RegisterCtrl',
+                    controller: 'RegisterController',
                     controllerAs: 'vm',
                     templateUrl: 'static/templates/authentication/register.html'
                 })

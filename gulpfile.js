@@ -51,6 +51,8 @@ gulp.task('templateCache', function() {
         .src(templatesSrc)
         .pipe(templateCache('orl.templates.js', {
             module: 'orl.templates',
+            root: 'static/templates/',
+            moduleSystem: 'IIFE',
         }))
         .pipe(gulp.dest('static/angular/'))
         .pipe(livereload());
@@ -95,7 +97,6 @@ gulp.task('test', function(done) {
 });
 
 gulp.task('default', [
-    'tdd',
     'watch',
 ]);
 

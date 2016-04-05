@@ -2,7 +2,9 @@
     'use strict';
     
     angular
-        .module('orl', [
+        .module('orlApp', [
+            'ngAria',
+            'ngMessages',
             'orl.config',
             'orl.routes',
             'orl.templates',
@@ -19,17 +21,11 @@
     angular
         .module('orl.templates', []);
     
-    angular
-        .module('orl.layout', []);
-    
-    angular
-        .module('orl.authentication', []);
-    
     /**
      * desc Update xsrf $http headers to align with Django's defaults
      */
    angular
-        .module('orl')
+        .module('orlApp')
         .run(function($http) {
             $http.defaults.xsrfHeaderName = 'X-CSRFToken';
             $http.defaults.xsrfCookieName = 'csrftoken';

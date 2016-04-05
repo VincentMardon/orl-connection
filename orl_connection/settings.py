@@ -130,23 +130,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'staticfiles'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+COMPRESS_ROOT = 'static/'
+
 STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
 )
 
 COMPRESS_ENABLED = False
-
-
-# Auth user model
-AUTH_USER_MODEL = 'authentication.Account'
 
 # Django REST Framework
 # http://www.django-rest-framework.org/
@@ -158,4 +153,8 @@ REST_FRAMEWORK = {
     )
 }
 
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+# Auth user model
+AUTH_USER_MODEL = 'authentication.Account'

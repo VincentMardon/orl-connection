@@ -1,15 +1,15 @@
-<nav class="navbar" ng-controller="NavbarCtrl as vm">
+<nav class="navbar" ng-controller="NavbarController as vm">
     <div class="container">
-        <span><a href='/'>ORL Connection</a></span>
-        <span></span>
+        <span><a href='/' title='Accueil du site'>ORL Connection</a></span>
+        <span><!-- Main pages --></span>
         {% if user.is_authenticated %}
             <span class="navbar-account" ng-click="vm.toggleAccountOptions()">{{ user.username }} &#9662;</span>
         {% else %}
-            <span><a ng-click="vm.login()">Se connecter</a></span>
+            <span><a href="/login">Se connecter</a></span>
         {% endif %}
     </div>
     
-    <div ng-show="vm.accountOptions">
+    <div ng-show="vm.accountOptions" ng-cloak>
         <ul>
             <li><a href="/{{ user.username }}">Voir mon profil</a></li>
             <li><a href="/{{ user.username }}/settings">Éditer mon profil</a></li>
