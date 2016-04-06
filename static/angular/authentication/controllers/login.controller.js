@@ -36,7 +36,7 @@
              * @memberOf orl.authentication.controllers.LoginController
              */
             function login() {
-                Authentication.login(vm.email, vm.password)
+                Authentication.login(vm.email, vm.password);
             }
         });
 })();

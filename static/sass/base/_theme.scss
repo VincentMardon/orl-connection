@@ -1,5 +1,28 @@
-// Reset some CSS styles that doesn't reseting in compass/reset
+// Main style
+// ----------
+body {
+    background-color: $black;
+    color: $white;
+    font-family: Arial;
+}
+
 a {
     text-decoration: none;
-    color: black;
+    &:visited {
+        color: $black;
+    };
+}
+
+.main-content {
+    position: relative;
+    top: 100px;
+    width: 100%;
+    height: 200%;
+    @include display-flex();
+    @include justify-content(center);
+    @include align-items(center);
+}
+
+button, [role=button] {
+    outline: none;
 }

@@ -1,24 +1,20 @@
-{% load static %}
 <!DOCTYPE html>
 <html ng-app="orlApp" lang="fr">
     <head>
         <meta charset="utf-8" />
         <title>ORL Connection - Accueil</title>
         <base href="/" />
-
-        <script type="text/javascript" src="{% static 'bower_components/angular/angular.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'bower_components/angular-route/angular-route.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'bower_components/angular-cookies/angular-cookies.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'bower_components/angular-messages/angular-messages.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'bower_components/angular-aria/angular-aria.min.js' %}"></script>
         
         {% include 'stylesheets.html' %}
+        {% include 'js-headers.html' %}
     </head>
     
     <body>
         {% include 'navbar.html' %}
         
-        <div ng-view></div>
+        <section class="main-content">
+            <div ng-view></div>
+        <section>
         
         {% include 'javascripts.html' %}
     </body>

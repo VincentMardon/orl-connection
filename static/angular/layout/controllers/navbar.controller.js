@@ -11,7 +11,7 @@
         /**
          * @namespace NavbarController
          */
-        .controller('NavbarController', function(Authentication) {
+        .controller('NavbarController', function($timeout, Authentication) {
             var vm = this;
             
             vm.accountOptions = false;
@@ -31,7 +31,9 @@
              * @memberOf orl.layout.controllers.NavbarController
              */
             vm.toggleAccountOptions = function() {
-                vm.accountOptions = vm.accountOptions === false ? true : false;
+                $timeout(function() {
+                    vm.accountOptions = vm.accountOptions === false ? true : false;
+                }, 200);
             }
         });
 })();

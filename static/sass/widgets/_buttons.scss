@@ -1,0 +1,20 @@
+.btn {
+    padding: 10px;
+    background-color: lighten($blue, 7%);
+    color: $white;
+    font-weight: bold;
+    border: none;
+    @include border-radius(10px);
+    @include transition(0.5s);
+    &:hover {
+        @include box-shadow(-1px 1px 2px $white);
+    }
+}
+
+[disabled=disabled] {
+    background-color: lighten($gray, 30%);
+    color: darken($white, 2%);
+    &:hover {
+        @include box-shadow(none);
+    }
+}

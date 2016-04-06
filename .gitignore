@@ -24,3 +24,7 @@ assets/js/
 
 # angular-annotated
 angular-annotated/
+
+# CSS files
+main.css
+main.css.map

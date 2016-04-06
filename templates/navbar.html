@@ -1,19 +1,36 @@
-<nav class="navbar" ng-controller="NavbarController as vm">
+<nav class="navbar-header" ng-controller="NavbarController as vm">
     <div class="container">
-        <span><a href='/' title='Accueil du site'>ORL Connection</a></span>
-        <span><!-- Main pages --></span>
+        <span class="item1">
+            <a href='/' title='Accueil du site'>ORL Connection</a>
+        </span>
+        
+        <span class="item2">
+            &lt;&lt; Main pages links &gt;&gt;
+        </span>
         {% if user.is_authenticated %}
-            <span class="navbar-account" ng-click="vm.toggleAccountOptions()">{{ user.username }} &#9662;</span>
+            <span class="navbar-account" class="item3" ng-click="vm.toggleAccountOptions()" ng-blur="vm.toggleAccountOptions()">
+                {{ user.username }} &#9662;
+            </span>
         {% else %}
-            <span><a href="/login">Se connecter</a></span>
+            <span class="item3">
+                <a href="/login">Se connecter</a>
+            </span>
         {% endif %}
     </div>
     
-    <div ng-show="vm.accountOptions" ng-cloak>
-        <ul>
-            <li><a href="/{{ user.username }}">Voir mon profil</a></li>
-            <li><a href="/{{ user.username }}/settings">Éditer mon profil</a></li>
-            <li ng-click="vm.logout()">Me déconnecter</li>
+    <div class="account-menu" ng-show="vm.accountOptions" ng-cloak>
+        <ul class="account-menu-list">
+            <li class="item">
+                <a href="/{{ user.username }}">Voir mon profil</a>
+            </li>
+            
+            <li class="item">
+                <a href="/{{ user.username }}/settings">Éditer mon profil</a>
+            </li>
+            
+            <li class="item" ng-click="vm.logout()">
+                Me déconnecter
+            </li>
         </ul>
     </div>
 </nav>

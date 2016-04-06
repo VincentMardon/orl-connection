@@ -1,15 +1,18 @@
-<h1>Connexion</h1>
+<h1>Connexion</h1><br />
 
 <form name="login" class="login-form" role="form" ng-submit="vm.login()" novalidate>
     <div class="form-group">
-        <label for="login__email">
-            Email
-            <input type="email" name="email" class="form-text" id="login__email" ng-model="vm.email" ng-model-options="{ updateOn: blur }" maxlength="320" placeholder="ex. john@email.com" required />
-        </label>
+        <label for="login__email">Email</label>
+        <input type="email" name="email" class="form-text" id="login__email" ng-model="vm.email" ng-model-options="{ updateOn: blur }" maxlength="320" placeholder="ex. john@email.com" required />
         
-        <div ng-messages="login.email.$error" role="alert" ng-show="login.email.$touched">
-            <div ng-message="required" class="error-message">Vous n'avez pas saisi votre email.</div>
-            <div ng-message="email" class="error-message">L'email que vous avez saisi est invalide.</div>
+        <div ng-messages="login.email.$error" role="alert">
+            <div ng-message="required" class="error-message" ng-show="login.email.$touched">
+                Vous n'avez pas saisi votre email.
+            </div>
+            
+            <div ng-message="email" class="error-message" ng-show="login.email.$touched">
+                L'email que vous avez saisi est invalide.
+            </div>
         </div>
     </div>
     
@@ -22,9 +25,9 @@
         <div ng-messages="login.password.$error" alert="alert" ng-show="login.password.$touched">
             <div ng-message="required" class="error-message">Vous n'avez pas saisi votre mot de passe.</div>
         </div>
-    </div>
+    </div><br />
     
     <div class="form-group">
-        <button class="btn" type="submit">Me connecter</button>
+        <button class="btn" type="submit" ng-disabled="login.email.$dirty && login.email.$invalid || login.password.$dirty && login.password.$invalid">Me connecter</button>
     </div>
 </form>
