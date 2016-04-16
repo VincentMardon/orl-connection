@@ -1,5 +1,5 @@
 /**
- * NavbarCtrl
+ * NavbarController
  * @namespace orl.layout.controllers
  */
 (function() {

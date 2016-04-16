@@ -1,5 +1,5 @@
 /**
- * LoginCtrl
+ * LoginController
  * @namespace orl.autentication.controllers
  */
 (function() {

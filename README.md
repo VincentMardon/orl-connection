@@ -4,7 +4,7 @@
 
 ## Table of contents
 
-1. [Installatiion](#installation)
+1. [Installation](#installation)
 2. [About Compass watch](#about-compass-watch)
 3. [License](#license)
 
@@ -27,9 +27,9 @@ Fork this repository:
 * `$ npm install`
 * `$ bower install`
 * `$ bundle install`
+* `$ gulp`
 * `$ python manage.py livereload`
 * `$ python manage.py runserver`
-* `$ gulp`
 * `$ compass watch --config static/config.rb` 
 
 ### About Compass watch
