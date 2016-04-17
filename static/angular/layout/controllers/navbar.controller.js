@@ -16,12 +16,18 @@
             
             vm.accountOptions = false;
             
+            vm.logout = logout;
+            vm.checkAccountOptions = checkAccountOptions;
+            vm.toggleAccountOptions = toggleAccountOptions
+            
+            ////////////////////////////////////
+            
             /**
              * @name logout
              * @desc Log the user out
              * @memberOf orl.layout.controllers.NavbarController
              */
-            vm.logout = function() {
+            function logout() {
                 Authentication.logout();
             };
             
@@ -30,7 +36,7 @@
              * @desc Call vm.toggleAccountOptions if vm.accountOptions is true
              * @memberOf orl.layout.controllers.NavbarController
              */
-            vm.checkAccountOptions = function() {
+            function checkAccountOptions() {
                 if (vm.accountOptions) {
                     vm.toggleAccountOptions();
                 }
@@ -41,7 +47,7 @@
              * @desc Tooggles vm.accountOptions to show/hide the user options menu
              * @memberOf orl.layout.controllers.NavbarController
              */
-            vm.toggleAccountOptions = function() {
+            function toggleAccountOptions() {
                 $timeout(function() {
                     vm.accountOptions = vm.accountOptions === false ? true : false;
                 }, 200);
