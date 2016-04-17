@@ -13,7 +13,7 @@
     
     .item1 {
         @include flex(1);
-        padding: 1%;
+        padding: 0 0 0 20px;
     }
     .item2 {
         @include flex(2);
@@ -23,7 +23,7 @@
     .item3 {
         @include flex(1);
         text-align: right;
-        padding: 1% 50px 1% 0;
+        padding: 0 50px 0 0;
     }
     
 }
@@ -35,7 +35,7 @@
 .account-menu {
     position: absolute;
     top: 50px;
-    right: 30px;
+    right: 25px;
     background-color: $white;
     color: $black;
     
