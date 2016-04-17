@@ -26,6 +26,17 @@
             };
             
             /**
+             * @name checkAccountOptions
+             * @desc Call vm.toggleAccountOptions if vm.accountOptions is true
+             * @memberOf orl.layout.controllers.NavbarController
+             */
+            vm.checkAccountOptions = function() {
+                if (vm.accountOptions) {
+                    vm.toggleAccountOptions();
+                }
+            }
+            
+            /**
              * @name toggleAccountOptions
              * @desc Tooggles vm.accountOptions to show/hide the user options menu
              * @memberOf orl.layout.controllers.NavbarController

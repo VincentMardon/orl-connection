@@ -8,6 +8,7 @@
             'orl.config',
             'orl.routes',
             'orl.templates',
+            'orl.utils',
             'orl.layout',
             'orl.authentication',
         ]);
