@@ -1,6 +1,6 @@
 # ORL Connection
 
-*This software is still under developpement...*
+*Due to current changes in AgunlarJS, the devellopment of this software is on hold...*
 
 ## Table of contents
 
