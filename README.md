@@ -1,6 +1,6 @@
 # ORL Connection
 
-*Due to current changes in AgunlarJS, the devellopment of this software is on hold...*
+*Due to the current changes in AgunlarJS and JavaScript (ES2015), the devellopment of this software is on hold...*
 
 ## Table of contents
 
